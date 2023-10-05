@@ -1,6 +1,9 @@
+/** @format */
+
 const express = require("express");
 const logger = require("morgan");
 const helmet = require("helmet");
+const urlShortenerRouter = require("./routes/URLShortener");
 
 const app = express();
 
@@ -9,12 +12,11 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.send("test");
-});
+app.use("/", urlShortenerRouter);
+
 // Custom error handler for incorrect URLs
 app.use((req, res, next) => {
-  const error = new Error('Not Found');
+  const error = new Error("Not Found");
   error.status = 404;
   next(error);
 });

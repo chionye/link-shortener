@@ -1,4 +1,4 @@
-/** @format */
+//server must be running to test this
 const axios = require("axios");
 const { URL } = require("url");
 
@@ -34,9 +34,7 @@ describe("URL Shortener Routes", () => {
     const url = "https://example.com";
     const enc = await axios.post("http://localhost:7000/encode", { url });
     const id = getPathname(enc.data.url);
-    const res = await axios.get(
-      `http://localhost:7000/statistic/${id}`
-    );
+    const res = await axios.get(`http://localhost:7000/statistic/${id}`);
     expect(res).toBeTruthy();
     expect(res.status).toBe(200);
   });

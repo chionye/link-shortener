@@ -1,6 +1,5 @@
-/** @format */
-
 // Import necessary modules and plugins
+//requires that the express server be running
 const { createRxDatabase } = require("rxdb"); // Remove addRxPlugin import
 const { getRxStorageDexie } = require("rxdb/plugins/storage-dexie");
 const { RxDBDevModePlugin } = require("rxdb/plugins/dev-mode");
