@@ -4,6 +4,7 @@ const express = require("express");
 const logger = require("morgan");
 const helmet = require("helmet");
 const urlShortenerRouter = require("./routes/URLShortener");
+const { port } = require("../config");
 
 const app = express();
 
@@ -31,4 +32,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-module.exports = app;
+app.listen(port, () => {
+  console.log(`listening on port: ${port}`);
+});
