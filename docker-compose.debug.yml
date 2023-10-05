@@ -1,6 +1,4 @@
-# @format
-
-version: "3.4"
+version: '3.4'
 
 services:
   linkshortnerv1:
@@ -13,4 +11,4 @@ services:
     ports:
       - 7000:7000
       - 9229:9229
-    command: ["node", "--inspect=0.0.0.0:9229", "./dist/index"]
+    command: ["node", "--inspect=0.0.0.0:9229", "app.js"]
