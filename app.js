@@ -4,7 +4,7 @@ const express = require("express");
 const logger = require("morgan");
 const helmet = require("helmet");
 const urlShortenerRouter = require("./routes/URLShortener");
-const { port } = require("../config");
+const { port } = require("./config");
 
 const app = express();
 
