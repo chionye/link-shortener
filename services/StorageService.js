@@ -1,4 +1,3 @@
-/** @format */
 
 //This class contains the save, findById and findByIdandUpdate methods for crud operations
 
@@ -38,7 +37,7 @@ class StorageService {
     }
   }
 
-  async findByIdandUpdate(id) {
+  async findByIdandUpdate(id, obj) {
     try {
       const documents = await this.collection.findOne({
         selector: {
@@ -47,11 +46,7 @@ class StorageService {
           },
         },
       });
-      await documents.update({
-        $inc: {
-          clicks: 1,
-        },
-      });
+      await documents.update(obj);
 
       return documents._result.docs.length > 0
         ? documents._result.docs[0]._data.originalURL
