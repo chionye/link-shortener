@@ -53,12 +53,15 @@ class URLShortnerService {
 
   async retrieveDataByIdandUpdate(url) {
     try {
-      const originalURL = await this.storage.repository.findByIdandUpdate(url);
+      const originalURL = await this.storage.repository.findByIdandUpdate(url, {
+        $inc: {
+          clicks: 1,
+        },
+      });
 
       if (!originalURL) {
         return { error: "URL not found", statusCode: 404 };
       }
-
 
       return { url: originalURL, statusCode: 200 };
     } catch (error) {
@@ -76,14 +79,14 @@ class URLShortnerService {
   }
 
   extractURLPathname(urlString) {
-    try {
-      const myURL = new URL(urlString);
-      const pathname = myURL.pathname;
-      const trimmedPathname = pathname.replace(/^\/+/, "");
-      return trimmedPathname;
-    } catch (error) {
-      throw error;
+    if (!urlValidator.isUrlValid(urlString)) {
+      throw new Error("Invalid URL");
     }
+
+    const myURL = new URL(urlString);
+    const pathname = myURL.pathname;
+    const trimmedPathname = pathname.replace(/^\/+/, "");
+    return trimmedPathname;
   }
 }
 

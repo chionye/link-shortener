@@ -24,7 +24,7 @@ class URLShortnerController {
 
   decode(req, res) {
     const { url } = req.body || "";
-    const data = this.urlShortnerService.retrieveDataByShortenedUrl(url);
+    const data = this.urlShortnerService. retrieveDataByShortenedUrl(url);
     data.then((result) => {
       const { originalURL } = result.url;
       this.handleResponse(res, result.statusCode, { url: originalURL });
